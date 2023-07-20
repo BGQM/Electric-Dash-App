@@ -32,7 +32,7 @@ app.layout = html.Div([
     html.Hr(),
     html.Button('Select kWh/Cost', n_clicks=0, id='button'),
     dcc.Graph(id="graph"),
-    #html.Hr(),
+    html.Hr(),
     #html.H1('Indicator gauges here...')
     #dcc.Markdown(id='text_displayed')
 ])
