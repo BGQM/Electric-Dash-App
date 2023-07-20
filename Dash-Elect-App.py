@@ -1,4 +1,3 @@
-#Modified example from the Plotly website
 #This works great!!!
 
 import pandas as pd
