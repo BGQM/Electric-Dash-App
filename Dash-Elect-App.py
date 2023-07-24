@@ -3,7 +3,7 @@ import datetime as dt
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import dash_bootstrap_components as dbc
-from pandas_ods_reader import read_ods
+#from pandas_ods_reader import read_ods
 
 colors = {'background': '#0086b3','text': '#ffffff'}#blue background and white text - Note: This matches the YETI theme!
 
