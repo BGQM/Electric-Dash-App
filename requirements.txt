@@ -1,5 +1,5 @@
 dash==2.6.0
 pandas
 datetime
-dash_bootstrap_component
+flask-bootstrap
 gunicorn
