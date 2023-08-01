@@ -31,6 +31,7 @@ app.layout = html.Div([
         labelStyle={'display':'inline-block','padding':'50','margin-left': '10px'}),
     html.Hr(),
     html.Button('Select kWh/Cost', n_clicks=0, id='button'),
+    style={'margin-left':'80px'}),
     dcc.Graph(id="graph"),
     html.Hr(),
 ])
