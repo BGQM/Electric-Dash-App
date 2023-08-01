@@ -30,7 +30,7 @@ app.layout = html.Div([
     dcc.RadioItems(id='selected_year', options=year_list, value=max_year, inline=True,
         labelStyle={'display':'inline-block','padding':'50','margin-left': '10px'}),
     html.Hr(),
-    html.Button('Select kWh/Cost', n_clicks=0, id='button'),
+    html.Button('Select kWh/Cost', n_clicks=0, id='button',
     style={'margin-left':'80px'}),
     dcc.Graph(id="graph"),
     html.Hr(),
