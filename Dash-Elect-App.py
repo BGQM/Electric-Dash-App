@@ -3,6 +3,7 @@ import datetime as dt
 from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import dash_bootstrap_components as dbc
+import dash_ag_grid as dag
 
 colors = {'background': '#0086b3','text': '#ffffff'}#blue background and white text - Note: This matches the YETI theme!
 
@@ -18,7 +19,7 @@ year_list = sorted(df['Year'].unique())
 max_year = df['Year'].max()
 
 app.layout = html.Div([
-    dcc.Markdown('Avalon Electricity Usage',
+    dcc.Markdown('Avalon Electricity Usage2',
             style={'fontSize':24, 
                     'fontWeight' : 'bold',
                     'textAlign':'center', 
