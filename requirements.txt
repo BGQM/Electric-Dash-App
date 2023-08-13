@@ -1,5 +1,6 @@
 dash==2.6.0
 dash-bootstrap-components==1.4.2
+dash_ag_grid 
 pandas
 datetime
 gunicorn
