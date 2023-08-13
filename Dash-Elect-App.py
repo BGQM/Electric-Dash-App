@@ -8,7 +8,9 @@ import dash_ag_grid as dag
 
 colors = {'background': '#0086b3','text': '#ffffff'}#blue background and white text - Note: This matches the YETI theme!
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.YETI])
+app = Dash(__name__, external_stylesheets=[dbc.themes.YETI],
+                    meta_tags=[{'name': 'viewport','content': 'width=device-width, initial-scale=1.0'}]
+                )
 server = app.server
 
 ### Data =======================================================================================
