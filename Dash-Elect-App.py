@@ -70,42 +70,28 @@ grid = dag.AgGrid(
     #dashGridOptions={"pinnedBottomRowData": [{}]}
 )
 
-### Bootstrap Card ======================================================================================
+### Bootstrap Cards ======================================================================================
 
-card1 = dbc.Card(
-    [
-        dbc.CardBody(
-            [
-                html.H5('Total Consumption', className='card-title', style={'fontWeight' : 'bold','textAlign':'center'})
-            ]
-        ),
+card1 = dbc.Card([
+        dbc.CardBody([
+            html.H5('Total Consumption', className='card-title', style={'fontWeight' : 'bold','textAlign':'center'})
+            ]),
         dbc.CardFooter(id='consumption', style={'fontSize':28, 'fontWeight' : 'bold','textAlign':'center'}),
-    ],
-    style={'width': '18rem'},
-)
+        ],style={'width':'20rem','background':'Azure'})
 
 card2 = dbc.Card([  
-        dbc.CardBody(
-            [
-                html.H5('Total Cost', className='card-title', style={'fontWeight' : 'bold','textAlign':'center'}),
-            ]
-        ),
+        dbc.CardBody([
+            html.H5('Total Cost', className='card-title', style={'fontWeight' : 'bold','textAlign':'center'}),
+            ]),
         dbc.CardFooter(id='cost', style={'fontSize':28,'fontWeight' : 'bold','textAlign':'center'}),
-    ],
-    style={'width': '18rem'},
-)
+        ], style={'width':'20rem','background':'Azure'})
 
-card3 = dbc.Card(
-    [
-        dbc.CardBody(
-            [
-                html.H5('Average Unit Cost', className='card-title',style={'fontWeight' : 'bold','textAlign':'center'}),
-            ]
-        ),
+card3 = dbc.Card([
+        dbc.CardBody([  
+            html.H5('Average Unit Cost', className='card-title',style={'fontWeight' : 'bold','textAlign':'center'}),
+            ]),
         dbc.CardFooter(id='unitcost', style={'fontSize':28,'fontWeight' : 'bold','textAlign':'center'}),
-    ],
-    style={'width': '18rem'},
-)
+        ], style={'width':'20rem','background':'Azure'})
 
 app.layout = dbc.Container([
     dbc.Row([
@@ -119,7 +105,7 @@ app.layout = dbc.Container([
                  }),
             html.Hr(),
             dbc.RadioItems(id='selected_year', options=year_list, value=max_year, inline=True, 
-            labelStyle={'display':'inline-block','margin-right': '15px'}),
+                labelStyle={'display':'inline-block','margin-right': '15px'}),
             html.Hr(),
             dcc.Tabs(id="tabs-styled-with-inline", value='tab-1', children=[
             dcc.Tab(label='Annual Summary', value='tab-1', style=tab_style, selected_style=tab_selected_style),
@@ -131,8 +117,8 @@ app.layout = dbc.Container([
             dcc.Tab(label='Data Table', value='tab-7', style=tab_style, selected_style=tab_selected_style),
         ], style=tabs_styles),
             html.Div(id='tabs-content-inline')
-       ], width=12)
-    ], justify="center"),
+        ], width=12)
+    ])
 ])
 
 # Callback and function to display tabs
@@ -144,49 +130,49 @@ def render_content(tab):
             html.Hr(),
             dbc.Row([
             dbc.Col(
-                html.H2(id='graph91_title', className='text-center',style={'fontWeight':'bold'})),
+                html.H2(id='graph1_title', className='text-center',style={'fontWeight':'bold'})),
                 html.Hr(),
             ]),
             dbc.Row([
-                dbc.Col(card1, width=4),
-                dbc.Col(card2, width=4),
-                dbc.Col(card3, width=4)
-                ])
+                dbc.Col(card1, width='auto'),
+                dbc.Col(card2, width='auto'),
+                dbc.Col(card3, width='auto')
+                ], justify='center')   
             ]) 
     elif tab == 'tab-2':
         return html.Div([
             html.Hr(),
-            html.H3(id='graph92_title', style={'fontWeight':'bold','textAlign':'center'}),
-            dcc.Graph(id="graph92")
+            html.H3(id='graph2_title', style={'fontWeight':'bold','textAlign':'center'}),
+            dcc.Graph(id="graph2")
         ])
     elif tab == 'tab-3':
         return html.Div([
             html.Hr(),
-            html.H3(id='graph93_title', style={'fontWeight' : 'bold','textAlign':'center'}),
-            dcc.Graph(id="graph93")
+            html.H3(id='graph3_title', style={'fontWeight' : 'bold','textAlign':'center'}),
+            dcc.Graph(id="graph3")
         ])
     elif tab == 'tab-4':
         return html.Div([
             html.Hr(),
-            html.H3(id='graph94_title', style={'fontWeight':'bold','textAlign':'center'}),
-            dcc.Graph(id="graph94")
+            html.H3(id='graph4_title', style={'fontWeight':'bold','textAlign':'center'}),
+            dcc.Graph(id="graph4")
         ])
     elif tab == 'tab-5':
         return html.Div([
             html.Hr(),
-            html.H3(id='graph95_title', style={'fontWeight':'bold','textAlign':'center'}),
-            dcc.Graph(id="graph95")
+            html.H3(id='graph5_title', style={'fontWeight':'bold','textAlign':'center'}),
+            dcc.Graph(id="graph5")
         ])
     elif tab == 'tab-6':
         return html.Div([
             html.Hr(),
-            html.H3(id='graph96_title', style={'fontWeight':'bold','textAlign':'center'}),
-            dcc.Graph(id="graph96")
+            html.H3(id='graph6_title', style={'fontWeight':'bold','textAlign':'center'}),
+            dcc.Graph(id="graph6")
         ])
     elif tab == 'tab-7':
         return html.Div([
             html.Hr(),
-            html.H3(id='graph97_title', style={'fontWeight':'bold','textAlign':'center'}),
+            html.H3(id='graph7_title', style={'fontWeight':'bold','textAlign':'center'}),
             grid,
             html.H5('Download complete dataset', style={'fontWeight':'bold'}),
             dbc.Button('Download CSV', id='csv-button', n_clicks=0, style={'border-radius': '6px'})  
@@ -204,7 +190,7 @@ def update_output_div(input_value):
 
 #Callback and function for Annual Summary
 @app.callback(
-    Output('graph91_title', 'children'),
+    Output('graph1_title', 'children'),
     Output('consumption', 'children'),
     Output('cost', 'children'),
     Output('unitcost', 'children'),
@@ -212,86 +198,86 @@ def update_output_div(input_value):
 )
 def display_graph(value):
     dff = df.loc[str(value)]
-    graph91_title = str(value) + '  Summary'
+    graph1_title = str(value) + '  Summary'
     total_kWh = str((f"{(dff['kWh'].sum()):,.0f}")) + ' kWh'
     total_cost = '$' + str((f"{(dff['Total'].sum()):,.2f}"))
     unit_cost = '$' + str((f"{(dff['Total'].sum()/dff['kWh'].sum()):,.3f}")) + ' per kWh'
-    return graph91_title, total_kWh, total_cost, unit_cost
+    return graph1_title, total_kWh, total_cost, unit_cost
 
 
 # Callback and function for monthly kWh consumption
 @app.callback(
-    Output("graph92", "figure"),
-    Output('graph92_title', 'children'),
+    Output("graph2", "figure"),
+    Output('graph2_title', 'children'),
     Input('selected_year', 'value')
 )
 def display_graph(value):
     dff = df.loc[str(value)]
     x, y = dff['Month'], dff['kWh']
-    graph92_title = str(value) + '  Monthly kWh Consumption'
+    graph2_title = str(value) + '  Monthly kWh Consumption'
     fig = px.bar(dff, x=x, y=y, text_auto=True
     )  
-    return fig,graph92_title
+    return fig,graph2_title
 
 
 # Callback and function for monthly cost
 @app.callback(
-    Output("graph93", "figure"),
-    Output('graph93_title', 'children'),
+    Output("graph3", "figure"),
+    Output('graph3_title', 'children'),
     Input('selected_year', 'value')
 )
 def display_graph(value):
     dff = df.loc[str(value)]
     x, y = dff['Month'], dff['Total']
-    graph93_title = str(value) + '  Monthly Cost($)'
+    graph3_title = str(value) + '  Monthly Cost($)'
     fig = px.bar(dff, x=x, y=y, text_auto=True
     )  
-    return fig,graph93_title
+    return fig,graph3_title
 
 
 # Callback and function for monthly unit rate
 @app.callback(
-    Output("graph94", "figure"),
-    Output('graph94_title', 'children'),
+    Output("graph4", "figure"),
+    Output('graph4_title', 'children'),
     Input('selected_year', 'value')
 )
 def display_graph(value):
     dff = df.loc[str(value)]
     x, y = dff['Month'], round(dff['Total']/dff['kWh'],3)
-    graph94_title = str(value) + '  Monthly Unit Rate ($/kWh)'
+    graph4_title = str(value) + '  Monthly Unit Rate ($/kWh)'
     fig = px.bar(dff, x=x, y=y, labels={'y':'$/kWh'},text_auto=True
     )  
-    return fig,graph94_title
+    return fig,graph4_title
 
 
 # Callback and function for monthly distribution pie chart
 @app.callback(
-    Output("graph95", "figure"),
-    Output('graph95_title', 'children'),
+    Output("graph5", "figure"),
+    Output('graph5_title', 'children'),
     Input('selected_year', 'value')
 )
 def display_graph(value):
     dff = df.loc[str(value)]
-    graph95_title = str(value) + '  Monthly kWh Distribution'
+    graph5_title = str(value) + '  Monthly kWh Distribution'
     fig = px.pie(dff, values='kWh', names='Month'
     )
-    return fig,graph95_title
+    return fig,graph5_title
 
 
 # Callback and function for unit rate trend
 @app.callback(
-    Output("graph96", "figure"),
-    Output('graph96_title', 'children'),
+    Output("graph6", "figure"),
+    Output('graph6_title', 'children'),
     Input('selected_year', 'value')
 )
 def display_graph(value):
     df['UnitRate'] = df['Total']/df['kWh']
     dff = df
     x, y = dff['Year'], dff['UnitRate']
-    graph96_title = 'Unit Rate Trend ($/kWh)'
+    graph6_title = 'Unit Rate Trend ($/kWh)'
     fig = px.line(dff, x=x, y=y, color = 'Month', labels={'y':'$/kWh'}, markers=True
     )  
-    return fig,graph96_title
+    return fig,graph6_title
 
 
 # Callback and function for data grid
